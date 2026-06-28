@@ -422,7 +422,7 @@ Please connect me with a gut nutrition expert.`;
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
             
             {/* Left side details */}
-            <div className="flex flex-col justify-between space-y-8">
+            <div className="flex flex-col justify-start space-y-10">
               <div className="space-y-4">
                 <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
                   Get in Touch
@@ -435,19 +435,45 @@ Please connect me with a gut nutrition expert.`;
                 </p>
               </div>
 
-              <div className="space-y-4 border-t border-sage-200/60 pt-6">
-                <div className="flex items-center space-x-3 text-sm text-sage-700">
-                  <Check className="h-5 w-5 text-sage-500 shrink-0" />
-                  <span>100% natural approach with zero side-effects</span>
+              {/* Three redesigned checkmark cards to fill the space nicely */}
+              <div className="space-y-6">
+                
+                <div className="glass-panel p-5 rounded-2xl border border-sage-200/40 bg-cream-50 flex items-start space-x-4 shadow-sm hover:scale-[1.01] hover:border-sage-300 transition-all duration-300">
+                  <div className="h-10 w-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-600 shrink-0">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-display font-bold text-sm text-sage-800">100% Natural Approach</h4>
+                    <p className="font-sans text-xs text-sage-500 mt-1 leading-relaxed">
+                      Zero synthetic additives or side-effects. We rely entirely on whole-food botanicals and natural healing methodologies to restore balance.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-3 text-sm text-sage-700">
-                  <Check className="h-5 w-5 text-sage-500 shrink-0" />
-                  <span>Personalized guidance from clinical experts</span>
+
+                <div className="glass-panel p-5 rounded-2xl border border-sage-200/40 bg-cream-50 flex items-start space-x-4 shadow-sm hover:scale-[1.01] hover:border-sage-300 transition-all duration-300">
+                  <div className="h-10 w-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-600 shrink-0">
+                    <Award className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-display font-bold text-sm text-sage-800">Expert Clinical Guidance</h4>
+                    <p className="font-sans text-xs text-sage-500 mt-1 leading-relaxed">
+                      Consult directly with certified clinical nutritionists who evaluate your symptoms, medical history, and custom-tailor your diet plans.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-3 text-sm text-sage-700">
-                  <Check className="h-5 w-5 text-sage-500 shrink-0" />
-                  <span>Daily follow-ups and WhatsApp check-in accountability</span>
+
+                <div className="glass-panel p-5 rounded-2xl border border-sage-200/40 bg-cream-50 flex items-start space-x-4 shadow-sm hover:scale-[1.01] hover:border-sage-300 transition-all duration-300">
+                  <div className="h-10 w-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-600 shrink-0">
+                    <Zap className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-display font-bold text-sm text-sage-800">Daily WhatsApp Support</h4>
+                    <p className="font-sans text-xs text-sage-500 mt-1 leading-relaxed">
+                      Stay accountable with daily check-ins, meal tracking, and live symptom support to ensure you stay on course throughout the healing program.
+                    </p>
+                  </div>
                 </div>
+
               </div>
             </div>
 
