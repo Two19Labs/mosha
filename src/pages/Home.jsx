@@ -20,6 +20,22 @@ export default function Home({ setCurrentTab, setConcernType }) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    
+    const message = `Hello MOSHA Health,
+
+I would like to request a gut health consultation. Here are my details:
+
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone}
+*Primary Gut Concern:* ${formData.concern}
+*Symptom Description:* ${formData.details || 'None provided'}
+
+Please connect me with a gut nutrition expert.`;
+
+    const whatsappUrl = `https://wa.me/917703866823?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    
     setFormSubmitted(true);
     setTimeout(() => {
       setFormSubmitted(false);
