@@ -21,7 +21,7 @@ export default function Home({ setCurrentTab, setConcernType }) {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     
-    const message = `Hello MOSHA Health,
+    const message = `Hello!
 
 I would like to request a gut health consultation. Here are my details:
 
