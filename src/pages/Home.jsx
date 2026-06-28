@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Heart, Activity, Star, ChevronDown, Check, ArrowRight, ShieldCheck, Award, Zap, HelpCircle } from 'lucide-react';
-import founderImage from '../assets/images/gut_reset_kit.png'; // Will use reset kit or generate_image if needed. Let's use reset kit image as a placeholder for founder since it looks high quality and professional.
+import founderImage from '../assets/images/mitali_kalra.png';
 
 export default function Home({ setCurrentTab, setConcernType }) {
   const [activeTab, setActiveTab] = useState(0);
