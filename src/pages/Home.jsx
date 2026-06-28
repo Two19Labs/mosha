@@ -555,7 +555,7 @@ Please connect me with a gut nutrition expert.`;
                     <textarea 
                       value={formData.details}
                       onChange={(e) => setFormData({...formData, details: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors h-24 resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors h-44 resize-none"
                       placeholder="Tell us what you are experiencing..."
                     />
                   </div>
