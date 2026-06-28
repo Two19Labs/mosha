@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&family=Raleway:wght@400;700;800&display=swap');
+
+@theme {
+  --color-sage-50: #f2f6f3;
+  --color-sage-100: #e1ece4;
+  --color-sage-200: #c6d9cd;
+  --color-sage-300: #a1beac;
+  --color-sage-400: #759b83;
+  --color-sage-500: #547d64;
+  --color-sage-600: #40624d;
+  --color-sage-700: #354f3f;
+  --color-sage-800: #2c3f33;
+  --color-sage-900: #25352c;
+  --color-sage-DEFAULT: #547d64;
+
+  --color-cream-50: #fdfcf7;
+  --color-cream-100: #FAF9F6;
+  --color-cream-200: #f3ebd8;
+  --color-cream-300: #e7d8bb;
+  --color-cream-400: #d7c19a;
+  --color-cream-DEFAULT: #FAF9F6;
+
+  --color-coral-50: #fff5f6;
+  --color-coral-100: #ffebee;
+  --color-coral-200: #ffccd4;
+  --color-coral-300: #ffa1b0;
+  --color-coral-400: #ff6681;
+  --color-coral-500: #ff335b;
+  --color-coral-600: #e61a43;
+  --color-coral-DEFAULT: #ff335b;
+
+  --font-sans: 'Montserrat', sans-serif;
+  --font-display: 'Open Sans', sans-serif;
+  --font-accent: 'Raleway', sans-serif;
+}
+
+body {
+  background-color: #FAF9F6; /* cream-100 */
+  color: #2c3f33; /* sage-800 */
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF9F6;
+}
+::-webkit-scrollbar-thumb {
+  background: #c6d9cd;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1beac;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom fade-in reveal animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Custom glassmorphism card */
+.glass-panel {
+  background: rgba(253, 252, 247, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(84, 125, 100, 0.1);
+}

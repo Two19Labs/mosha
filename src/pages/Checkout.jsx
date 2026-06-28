@@ -1,0 +1,402 @@
+import React, { useState } from 'react';
+import { CreditCard, Truck, User, Check, ArrowLeft, Heart, ShoppingBag } from 'lucide-react';
+
+export default function Checkout({ cartItems, onClearCart, onOrderPlaced }) {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
+    paymentMethod: 'cod',
+    cardNumber: '',
+    cardExpiry: '',
+    cardCvv: '',
+    upiId: ''
+  });
+
+  const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const shipping = subtotal > 1500 ? 0 : 99;
+  const total = subtotal + shipping;
+
+  const handleNextStep = (e) => {
+    e.preventDefault();
+    setStep(step + 1);
+  };
+
+  const handlePrevStep = () => {
+    setStep(step - 1);
+  };
+
+  const handlePlaceOrder = (e) => {
+    e.preventDefault();
+    // Generate order confirmation object
+    const orderDetails = {
+      orderId: `MOSHA-${Math.floor(100000 + Math.random() * 900000)}`,
+      customer: {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone
+      },
+      shippingAddress: {
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        zip: formData.zip
+      },
+      items: cartItems,
+      subtotal,
+      shipping,
+      total,
+      paymentMethod: formData.paymentMethod
+    };
+    onOrderPlaced(orderDetails);
+  };
+
+  return (
+    <div className="bg-cream-100 min-h-screen py-16 font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Main Wizard Form */}
+          <div className="lg:col-span-8 space-y-8 animate-fadeInUp">
+            
+            {/* Step Indicators */}
+            <div className="flex items-center justify-between max-w-md mx-auto mb-8">
+              <div className={`flex flex-col items-center ${step >= 1 ? 'text-sage-600' : 'text-sage-300'}`}>
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center font-bold border-2 ${
+                  step === 1 ? 'bg-sage-500 text-cream-100 border-sage-500' : step > 1 ? 'bg-sage-100 text-sage-600 border-sage-500' : 'border-sage-200'
+                }`}>
+                  {step > 1 ? <Check className="h-5 w-5" /> : "1"}
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider mt-2">Details</span>
+              </div>
+              <div className="h-0.5 bg-sage-200 flex-1 mx-4 -translate-y-4" />
+              
+              <div className={`flex flex-col items-center ${step >= 2 ? 'text-sage-600' : 'text-sage-300'}`}>
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center font-bold border-2 ${
+                  step === 2 ? 'bg-sage-500 text-cream-100 border-sage-500' : step > 2 ? 'bg-sage-100 text-sage-600 border-sage-500' : 'border-sage-200'
+                }`}>
+                  {step > 2 ? <Check className="h-5 w-5" /> : "2"}
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider mt-2">Shipping</span>
+              </div>
+              <div className="h-0.5 bg-sage-200 flex-1 mx-4 -translate-y-4" />
+              
+              <div className={`flex flex-col items-center ${step >= 3 ? 'text-sage-600' : 'text-sage-300'}`}>
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center font-bold border-2 ${
+                  step === 3 ? 'bg-sage-500 text-cream-100 border-sage-500' : 'border-sage-200'
+                }`}>
+                  "3"
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider mt-2">Payment</span>
+              </div>
+            </div>
+
+            {/* Step Content */}
+            <div className="glass-panel p-8 rounded-3xl border border-sage-200/50 bg-cream-50 shadow-xl">
+              
+              {step === 1 && (
+                <form onSubmit={handleNextStep} className="space-y-6">
+                  <h3 className="font-display font-bold text-xl text-sage-800 flex items-center border-b border-sage-100 pb-4">
+                    <User className="h-5 w-5 mr-2 text-sage-500" />
+                    Customer Contact Details
+                  </h3>
+                  <div>
+                    <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                      Full Name
+                    </label>
+                    <input 
+                      type="text" 
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"
+                      placeholder="e.g. Jatin Arora"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                        Email Address
+                      </label>
+                      <input 
+                        type="email" 
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"
+                        placeholder="jatin@example.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                        Phone Number
+                      </label>
+                      <input 
+                        type="tel" 
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+                  </div>
+                  <div className="pt-4 flex justify-end">
+                    <button
+                      type="submit"
+                      className="px-8 py-3 rounded-full bg-sage-500 text-cream-100 text-xs font-bold shadow-md hover:bg-sage-600 hover:scale-102 transition-all"
+                    >
+                      Continue to Shipping
+                    </button>
+                  </div>
+                </form>
+              )}
+
+              {step === 2 && (
+                <form onSubmit={handleNextStep} className="space-y-6">
+                  <h3 className="font-display font-bold text-xl text-sage-800 flex items-center border-b border-sage-100 pb-4">
+                    <Truck className="h-5 w-5 mr-2 text-sage-500" />
+                    Shipping and Delivery Address
+                  </h3>
+                  <div>
+                    <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                      Street Address
+                    </label>
+                    <input 
+                      type="text" 
+                      required
+                      value={formData.address}
+                      onChange={(e) => setFormData({...formData, address: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"
+                      placeholder="e.g. F-71, Sector-21"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                        City
+                      </label>
+                      <input 
+                        type="text" 
+                        required
+                        value={formData.city}
+                        onChange={(e) => setFormData({...formData, city: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"
+                        placeholder="Noida"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                        State
+                      </label>
+                      <input 
+                        type="text" 
+                        required
+                        value={formData.state}
+                        onChange={(e) => setFormData({...formData, state: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"
+                        placeholder="Uttar Pradesh"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                        ZIP / Postal Code
+                      </label>
+                      <input 
+                        type="text" 
+                        required
+                        value={formData.zip}
+                        onChange={(e) => setFormData({...formData, zip: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"
+                        placeholder="201301"
+                      />
+                    </div>
+                  </div>
+                  <div className="pt-4 flex justify-between">
+                    <button
+                      type="button"
+                      onClick={handlePrevStep}
+                      className="px-6 py-3 rounded-full border border-sage-200 text-sage-800 hover:bg-sage-50 text-xs font-bold transition-all flex items-center"
+                    >
+                      <ArrowLeft className="mr-2 h-4 w-4" />
+                      Back
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-8 py-3 rounded-full bg-sage-500 text-cream-100 text-xs font-bold shadow-md hover:bg-sage-600 hover:scale-102 transition-all"
+                    >
+                      Continue to Payment
+                    </button>
+                  </div>
+                </form>
+              )}
+
+              {step === 3 && (
+                <form onSubmit={handlePlaceOrder} className="space-y-6">
+                  <h3 className="font-display font-bold text-xl text-sage-800 flex items-center border-b border-sage-100 pb-4">
+                    <CreditCard className="h-5 w-5 mr-2 text-sage-500" />
+                    Select Payment Method
+                  </h3>
+                  
+                  <div className="grid grid-cols-3 gap-4">
+                    {[['cod', 'Cash On Delivery'], ['card', 'Credit/Debit Card'], ['upi', 'UPI / PhonePe']].map(([method, label]) => (
+                      <label 
+                        key={method} 
+                        className={`flex flex-col items-center justify-center p-4 border rounded-xl cursor-pointer hover:border-sage-400 transition-colors text-center ${
+                          formData.paymentMethod === method 
+                            ? 'border-sage-500 bg-sage-50' 
+                            : 'border-sage-200 bg-cream-50'
+                        }`}
+                      >
+                        <input 
+                          type="radio" 
+                          name="paymentMethod" 
+                          value={method} 
+                          checked={formData.paymentMethod === method}
+                          onChange={(e) => setFormData({...formData, paymentMethod: e.target.value})}
+                          className="sr-only"
+                        />
+                        <span className="text-xs font-bold text-sage-800 font-sans">{label}</span>
+                      </label>
+                    ))}
+                  </div>
+
+                  {formData.paymentMethod === 'card' && (
+                    <div className="space-y-4 border border-sage-200/50 p-6 rounded-2xl bg-cream-100/30 animate-fadeInUp">
+                      <div>
+                        <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                          Card Number
+                        </label>
+                        <input 
+                          type="text" 
+                          required
+                          value={formData.cardNumber}
+                          onChange={(e) => setFormData({...formData, cardNumber: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 transition-colors"
+                          placeholder="1234 5678 9012 3456"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                            Expiry (MM/YY)
+                          </label>
+                          <input 
+                            type="text" 
+                            required
+                            value={formData.cardExpiry}
+                            onChange={(e) => setFormData({...formData, cardExpiry: e.target.value})}
+                            className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none"
+                            placeholder="12/29"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                            CVV
+                          </label>
+                          <input 
+                            type="password" 
+                            required
+                            maxLength="3"
+                            value={formData.cardCvv}
+                            onChange={(e) => setFormData({...formData, cardCvv: e.target.value})}
+                            className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none"
+                            placeholder="***"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {formData.paymentMethod === 'upi' && (
+                    <div className="space-y-4 border border-sage-200/50 p-6 rounded-2xl bg-cream-100/30 animate-fadeInUp">
+                      <div>
+                        <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
+                          UPI ID / Virtual Address
+                        </label>
+                        <input 
+                          type="text" 
+                          required
+                          value={formData.upiId}
+                          onChange={(e) => setFormData({...formData, upiId: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 transition-colors"
+                          placeholder="name@upi"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-4 flex justify-between">
+                    <button
+                      type="button"
+                      onClick={handlePrevStep}
+                      className="px-6 py-3 rounded-full border border-sage-200 text-sage-800 hover:bg-sage-50 text-xs font-bold transition-all flex items-center"
+                    >
+                      <ArrowLeft className="mr-2 h-4 w-4" />
+                      Back
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-8 py-3 rounded-full bg-coral-500 text-cream-100 text-xs font-bold shadow-md hover:bg-coral-600 hover:scale-102 transition-all"
+                    >
+                      Complete Order Plan (Rs. {total})
+                    </button>
+                  </div>
+                </form>
+              )}
+
+            </div>
+
+          </div>
+
+          {/* Cart Sidebar Summary */}
+          <div className="lg:col-span-4 space-y-6">
+            <div className="glass-panel p-6 rounded-3xl border border-sage-200/50 bg-cream-50 shadow-xl">
+              <h3 className="font-display font-bold text-base text-sage-800 mb-4 border-b border-sage-100 pb-3 flex items-center">
+                <ShoppingBag className="h-5 w-5 mr-2 text-sage-500" />
+                Order Summary
+              </h3>
+              
+              <div className="max-h-64 overflow-y-auto space-y-4 mb-6">
+                {cartItems.map((item, idx) => (
+                  <div key={idx} className="flex justify-between items-center text-xs">
+                    <div className="flex items-center space-x-2">
+                      <span className="font-semibold text-sage-800">{item.name}</span>
+                      <span className="text-sage-400">x{item.quantity}</span>
+                    </div>
+                    <span className="font-accent font-semibold text-sage-700">
+                      Rs. {item.price * item.quantity}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="border-t border-sage-100 pt-4 space-y-3 text-xs sm:text-sm text-sage-700">
+                <div className="flex justify-between">
+                  <span>Subtotal</span>
+                  <span className="font-accent">Rs. {subtotal}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Shipping</span>
+                  <span>{shipping === 0 ? "Free" : `Rs. ${shipping}`}</span>
+                </div>
+                <div className="flex justify-between border-t border-sage-100 pt-3 text-base font-bold text-sage-800">
+                  <span>Grand Total</span>
+                  <span className="font-accent">Rs. {total}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}
