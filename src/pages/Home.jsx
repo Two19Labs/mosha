@@ -390,7 +390,7 @@ Please connect me with a gut nutrition expert.`;
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 relative">
             <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-sage-200 -translate-y-4 z-0" />
             {journeySteps.map((step, idx) => (
-              <div key={idx} className="relative z-10 glass-panel p-6 rounded-2xl border border-sage-200/50 bg-cream-50 flex flex-col justify-between hover:scale-102 transition-transform duration-300">
+              <div key={idx} className="relative z-10 p-6 rounded-2xl border border-sage-200/50 bg-cream-50 shadow-sm flex flex-col justify-between hover:scale-102 transition-transform duration-300">
                 <div>
                   <div className="text-4xl font-display font-black text-sage-200/70 mb-4">{step.step}</div>
                   <h4 className="font-display font-bold text-base text-sage-800 mb-2 leading-snug">
