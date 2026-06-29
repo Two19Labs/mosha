@@ -2,15 +2,6 @@ import React, { useState } from 'react';
 import { Check, Star, RefreshCw, Coffee, Heart, ArrowRight } from 'lucide-react';
 import { products } from '../data/productsData';
 
-// Per-concern relief imagery — temporary Unsplash placeholders.
-// Swap each URL with a brand image (suggested filename in comment).
-const CONCERN_IMG = {
-  acidity:      'https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?auto=format&fit=crop&w=900&q=80', // concern_acidity.jpg
-  gastritis:    'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=900&q=80', // concern_gastritis.jpg
-  bloating:     'https://images.unsplash.com/photo-1494390248081-4e521a5940db?auto=format&fit=crop&w=900&q=80', // concern_bloating.jpg
-  constipation: 'https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=900&q=80', // concern_constipation.jpg
-};
-
 export default function ConcernPage({ concernType, onAddToCart }) {
   const [activeFaq, setActiveFaq] = useState(null);
 
@@ -75,10 +66,6 @@ export default function ConcernPage({ concernType, onAddToCart }) {
   };
 
   const info = getConcernDetails();
-  const concernImage = CONCERN_IMG[concernType] || CONCERN_IMG.constipation;
-
-  // Slug for per-symptom image filename, e.g. "Heart Burn" -> "heart-burn".
-  const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
   const plans = [
     {
@@ -196,53 +183,20 @@ export default function ConcernPage({ concernType, onAddToCart }) {
         </div>
 
         {/* Symptoms Relief Grid */}
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sage-200/50 mb-20 animate-fadeInUp">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Concern image */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-2xl overflow-hidden shadow-md border border-sage-200/50">
-                <img
-                  src={concernImage}
-                  alt={info.title}
-                  className="w-full h-64 lg:h-80 object-cover bg-sage-100"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-sage-900/50 to-transparent" />
-                <span className="absolute bottom-4 left-4 text-cream-50 font-display font-bold text-lg drop-shadow">
-                  {info.title}
-                </span>
+        <div className="glass-panel p-8 rounded-3xl border border-sage-200/50 bg-cream-50/70 mb-20 animate-fadeInUp">
+          <h2 className="font-display font-bold text-lg text-sage-800 mb-6 text-center">
+            Clinically Targeting Relief For
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            {info.symptoms.map((symptom, idx) => (
+              <div 
+                key={idx} 
+                className="flex items-center space-x-2 bg-cream-100/70 border border-sage-100 px-4 py-3.5 rounded-xl hover:scale-102 hover:border-sage-300 transition-all duration-300"
+              >
+                <div className="h-2 w-2 rounded-full bg-coral-500" />
+                <span className="text-xs font-semibold text-sage-800">{symptom}</span>
               </div>
-            </div>
-            {/* Symptom grid */}
-            <div className="lg:col-span-7">
-              <h2 className="font-display font-bold text-lg text-sage-800 mb-6 text-center lg:text-left">
-                Clinically Targeting Relief For
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {info.symptoms.map((symptom, idx) => {
-                  const slug = slugify(symptom);
-                  return (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-3 bg-cream-100 border border-sage-100 px-3 py-2.5 rounded-xl hover:scale-102 hover:border-sage-300 transition-all duration-300"
-                    >
-                      <img
-                        src={`/images/symptoms/${slug}.jpg`}
-                        onError={(e) => {
-                          if (e.currentTarget.dataset.fb) return;
-                          e.currentTarget.dataset.fb = '1';
-                          e.currentTarget.src = `https://loremflickr.com/80/80/${slug.replace(/-/g, ',')}`;
-                        }}
-                        alt={symptom}
-                        loading="lazy"
-                        className="h-10 w-10 rounded-lg object-cover bg-sage-100 shrink-0"
-                      />
-                      <span className="text-xs font-semibold text-sage-800 leading-tight">{symptom}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
