@@ -504,11 +504,11 @@ Please connect me with a gut nutrition expert.`;
               }
             ].map((item, idx) => (
               <div key={idx} className="group rounded-3xl overflow-hidden border border-sage-200/50 bg-cream-100 shadow-sm hover:shadow-lg transition-all duration-300">
-                <div className="overflow-hidden">
+                <div className="h-56 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-56 object-cover bg-sage-100 group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover bg-sage-100 group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
