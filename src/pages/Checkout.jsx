@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { CreditCard, Truck, User, Check, ArrowLeft, Heart, ShoppingBag } from 'lucide-react';
+import { CreditCard, Truck, User, Check, ArrowLeft, ShoppingBag, Banknote } from 'lucide-react';
+import { openRazorpayCheckout } from '../lib/razorpay';
 
 export default function Checkout({ cartItems, onClearCart, onOrderPlaced }) {
   const [step, setStep] = useState(1);
+  const [paying, setPaying] = useState(false);
+  const [payError, setPayError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,11 +14,7 @@ export default function Checkout({ cartItems, onClearCart, onOrderPlaced }) {
     city: '',
     state: '',
     zip: '',
-    paymentMethod: 'cod',
-    cardNumber: '',
-    cardExpiry: '',
-    cardCvv: '',
-    upiId: ''
+    paymentMethod: 'cod'
   });
 
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
@@ -31,29 +30,60 @@ export default function Checkout({ cartItems, onClearCart, onOrderPlaced }) {
     setStep(step - 1);
   };
 
-  const handlePlaceOrder = (e) => {
+  const buildOrderDetails = (extra = {}) => ({
+    orderId: `MOSHA-${Math.floor(100000 + Math.random() * 900000)}`,
+    customer: {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone
+    },
+    shippingAddress: {
+      address: formData.address,
+      city: formData.city,
+      state: formData.state,
+      zip: formData.zip
+    },
+    items: cartItems,
+    subtotal,
+    shipping,
+    total,
+    paymentMethod: formData.paymentMethod,
+    ...extra
+  });
+
+  const handlePlaceOrder = async (e) => {
     e.preventDefault();
-    // Generate order confirmation object
-    const orderDetails = {
-      orderId: `MOSHA-${Math.floor(100000 + Math.random() * 900000)}`,
-      customer: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone
-      },
-      shippingAddress: {
-        address: formData.address,
-        city: formData.city,
-        state: formData.state,
-        zip: formData.zip
-      },
-      items: cartItems,
-      subtotal,
-      shipping,
-      total,
-      paymentMethod: formData.paymentMethod
-    };
-    onOrderPlaced(orderDetails);
+    setPayError('');
+
+    // Cash on delivery — no online payment.
+    if (formData.paymentMethod === 'cod') {
+      onOrderPlaced(buildOrderDetails({ paymentStatus: 'cod_pending' }));
+      return;
+    }
+
+    // Pay Online via Razorpay Checkout modal.
+    setPaying(true);
+    try {
+      await openRazorpayCheckout({
+        amount: total,
+        customer: formData,
+        notes: { city: formData.city, items: cartItems.length },
+        onSuccess: (response) => {
+          setPaying(false);
+          onOrderPlaced(buildOrderDetails({
+            paymentStatus: 'paid',
+            paymentId: response.razorpay_payment_id
+          }));
+        },
+        onDismiss: (err) => {
+          setPaying(false);
+          if (err) setPayError(err.description || 'Payment failed. Please try again.');
+        }
+      });
+    } catch (err) {
+      setPaying(false);
+      setPayError(err.message || 'Could not start payment.');
+    }
   };
 
   return (
@@ -244,91 +274,46 @@ export default function Checkout({ cartItems, onClearCart, onOrderPlaced }) {
                     Select Payment Method
                   </h3>
                   
-                  <div className="grid grid-cols-3 gap-4">
-                    {[['cod', 'Cash On Delivery'], ['card', 'Credit/Debit Card'], ['upi', 'UPI / PhonePe']].map(([method, label]) => (
-                      <label 
-                        key={method} 
-                        className={`flex flex-col items-center justify-center p-4 border rounded-xl cursor-pointer hover:border-sage-400 transition-colors text-center ${
-                          formData.paymentMethod === method 
-                            ? 'border-sage-500 bg-sage-50' 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {[
+                      ['cod', 'Cash On Delivery', 'Pay in cash when your order arrives', Banknote],
+                      ['online', 'Pay Online', 'Cards, UPI, NetBanking & Wallets via Razorpay', CreditCard]
+                    ].map(([method, label, sub, Icon]) => (
+                      <label
+                        key={method}
+                        className={`flex items-start gap-3 p-4 border rounded-xl cursor-pointer hover:border-sage-400 transition-colors ${
+                          formData.paymentMethod === method
+                            ? 'border-sage-500 bg-sage-50'
                             : 'border-sage-200 bg-cream-50'
                         }`}
                       >
-                        <input 
-                          type="radio" 
-                          name="paymentMethod" 
-                          value={method} 
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value={method}
                           checked={formData.paymentMethod === method}
-                          onChange={(e) => setFormData({...formData, paymentMethod: e.target.value})}
+                          onChange={(e) => { setPayError(''); setFormData({...formData, paymentMethod: e.target.value}); }}
                           className="sr-only"
                         />
-                        <span className="text-xs font-bold text-sage-800 font-sans">{label}</span>
+                        <Icon className={`h-5 w-5 mt-0.5 shrink-0 ${formData.paymentMethod === method ? 'text-sage-600' : 'text-sage-400'}`} />
+                        <span className="text-left">
+                          <span className="block text-xs font-bold text-sage-800 font-sans">{label}</span>
+                          <span className="block text-[11px] text-sage-500 font-sans mt-0.5">{sub}</span>
+                        </span>
                       </label>
                     ))}
                   </div>
 
-                  {formData.paymentMethod === 'card' && (
-                    <div className="space-y-4 border border-sage-200/50 p-6 rounded-2xl bg-cream-100/30 animate-fadeInUp">
-                      <div>
-                        <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
-                          Card Number
-                        </label>
-                        <input 
-                          type="text" 
-                          required
-                          value={formData.cardNumber}
-                          onChange={(e) => setFormData({...formData, cardNumber: e.target.value})}
-                          className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 transition-colors"
-                          placeholder="1234 5678 9012 3456"
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
-                            Expiry (MM/YY)
-                          </label>
-                          <input 
-                            type="text" 
-                            required
-                            value={formData.cardExpiry}
-                            onChange={(e) => setFormData({...formData, cardExpiry: e.target.value})}
-                            className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none"
-                            placeholder="12/29"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
-                            CVV
-                          </label>
-                          <input 
-                            type="password" 
-                            required
-                            maxLength="3"
-                            value={formData.cardCvv}
-                            onChange={(e) => setFormData({...formData, cardCvv: e.target.value})}
-                            className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none"
-                            placeholder="***"
-                          />
-                        </div>
-                      </div>
+                  {formData.paymentMethod === 'online' && (
+                    <div className="flex items-center gap-2 text-[11px] text-sage-500 font-sans border border-sage-200/50 p-3 rounded-xl bg-cream-100/30">
+                      <CreditCard className="h-4 w-4 text-sage-400 shrink-0" />
+                      You will be redirected to the secure Razorpay window to complete payment of Rs. {total}.
                     </div>
                   )}
 
-                  {formData.paymentMethod === 'upi' && (
-                    <div className="space-y-4 border border-sage-200/50 p-6 rounded-2xl bg-cream-100/30 animate-fadeInUp">
-                      <div>
-                        <label className="block text-xs font-semibold text-sage-700 uppercase tracking-wider mb-2 font-sans">
-                          UPI ID / Virtual Address
-                        </label>
-                        <input 
-                          type="text" 
-                          required
-                          value={formData.upiId}
-                          onChange={(e) => setFormData({...formData, upiId: e.target.value})}
-                          className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-cream-50 text-sage-800 text-sm focus:outline-none focus:border-sage-400 transition-colors"
-                          placeholder="name@upi"
-                        />
-                      </div>
+                  {payError && (
+                    <div className="text-[11px] text-coral-600 font-sans border border-coral-200 bg-coral-50 p-3 rounded-xl">
+                      {payError}
                     </div>
                   )}
 
@@ -336,16 +321,22 @@ export default function Checkout({ cartItems, onClearCart, onOrderPlaced }) {
                     <button
                       type="button"
                       onClick={handlePrevStep}
-                      className="px-6 py-3 rounded-full border border-sage-200 text-sage-800 hover:bg-sage-50 text-xs font-bold transition-all flex items-center"
+                      disabled={paying}
+                      className="px-6 py-3 rounded-full border border-sage-200 text-sage-800 hover:bg-sage-50 text-xs font-bold transition-all flex items-center disabled:opacity-50"
                     >
                       <ArrowLeft className="mr-2 h-4 w-4" />
                       Back
                     </button>
                     <button
                       type="submit"
-                      className="px-8 py-3 rounded-full bg-coral-500 text-cream-100 text-xs font-bold shadow-md hover:bg-coral-600 hover:scale-102 transition-all"
+                      disabled={paying}
+                      className="px-8 py-3 rounded-full bg-coral-500 text-cream-100 text-xs font-bold shadow-md hover:bg-coral-600 hover:scale-102 transition-all disabled:opacity-60 disabled:hover:scale-100"
                     >
-                      Complete Order Plan (Rs. {total})
+                      {paying
+                        ? 'Processing…'
+                        : formData.paymentMethod === 'online'
+                          ? `Pay Rs. ${total}`
+                          : `Place Order (Rs. ${total})`}
                     </button>
                   </div>
                 </form>

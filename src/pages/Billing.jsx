@@ -32,8 +32,11 @@ export default function Billing({ orderDetails, onContinueShopping }) {
             <div className="space-y-2">
               <p className="text-sage-400 font-semibold uppercase tracking-wider text-[10px]">Order Details</p>
               <p><span className="font-semibold">Order ID:</span> {orderDetails.orderId}</p>
-              <p><span className="font-semibold">Payment Mode:</span> <span className="uppercase">{orderDetails.paymentMethod}</span></p>
-              <p><span className="font-semibold">Status:</span> Pending Verification</p>
+              <p><span className="font-semibold">Payment Mode:</span> {orderDetails.paymentMethod === 'online' ? 'Online (Razorpay)' : 'Cash on Delivery'}</p>
+              {orderDetails.paymentId && (
+                <p className="break-all"><span className="font-semibold">Payment ID:</span> {orderDetails.paymentId}</p>
+              )}
+              <p><span className="font-semibold">Status:</span> {orderDetails.paymentStatus === 'paid' ? 'Paid' : 'Pending Verification'}</p>
             </div>
             <div className="space-y-2">
               <p className="text-sage-400 font-semibold uppercase tracking-wider text-[10px]">Delivery To</p>
