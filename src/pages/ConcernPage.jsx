@@ -77,6 +77,9 @@ export default function ConcernPage({ concernType, onAddToCart }) {
   const info = getConcernDetails();
   const concernImage = CONCERN_IMG[concernType] || CONCERN_IMG.constipation;
 
+  // Slug for per-symptom image filename, e.g. "Heart Burn" -> "heart-burn".
+  const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
   const plans = [
     {
       id: `${concernType}-cleanse`,
@@ -216,15 +219,28 @@ export default function ConcernPage({ concernType, onAddToCart }) {
                 Clinically Targeting Relief For
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {info.symptoms.map((symptom, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center space-x-2 bg-cream-100 border border-sage-100 px-4 py-3.5 rounded-xl hover:scale-102 hover:border-sage-300 transition-all duration-300"
-                  >
-                    <div className="h-2 w-2 rounded-full bg-coral-500 shrink-0" />
-                    <span className="text-xs font-semibold text-sage-800">{symptom}</span>
-                  </div>
-                ))}
+                {info.symptoms.map((symptom, idx) => {
+                  const slug = slugify(symptom);
+                  return (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-3 bg-cream-100 border border-sage-100 px-3 py-2.5 rounded-xl hover:scale-102 hover:border-sage-300 transition-all duration-300"
+                    >
+                      <img
+                        src={`/images/symptoms/${slug}.jpg`}
+                        onError={(e) => {
+                          if (e.currentTarget.dataset.fb) return;
+                          e.currentTarget.dataset.fb = '1';
+                          e.currentTarget.src = `https://loremflickr.com/80/80/${slug.replace(/-/g, ',')}`;
+                        }}
+                        alt={symptom}
+                        loading="lazy"
+                        className="h-10 w-10 rounded-lg object-cover bg-sage-100 shrink-0"
+                      />
+                      <span className="text-xs font-semibold text-sage-800 leading-tight">{symptom}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
