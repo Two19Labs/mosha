@@ -15,15 +15,15 @@ export default function Shop({ onAddToCart }) {
   });
 
   return (
-    <div className="bg-cream-100 min-h-screen py-16 font-sans">
+    <div className="bg-cream-100 min-h-screen py-12 sm:py-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Title */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 animate-fadeInUp">
-          <span className="text-xs font-bold text-sage-500 tracking-widest uppercase bg-sage-100/60 border border-sage-200/50 px-4 py-1.5 rounded-full">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-4 animate-fadeInUp">
+          <span className="inline-block text-xs font-bold text-sage-500 tracking-widest uppercase bg-sage-100/60 border border-sage-200/50 px-4 py-1.5 rounded-full">
             MOSHA Apothecary
           </span>
-          <h1 className="font-display font-bold text-4xl text-sage-900 leading-tight mt-2">
+          <h1 className="font-display font-bold text-3xl sm:text-4xl text-sage-900 leading-tight mt-2">
             Shop Gut Healing Formulations
           </h1>
           <p className="text-base text-sage-700 leading-relaxed">
@@ -81,7 +81,7 @@ export default function Shop({ onAddToCart }) {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredProducts.map((product) => (
             <div 
               key={product.id}

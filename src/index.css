@@ -42,6 +42,19 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent mobile auto text inflation and media overflow */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+*, *::before, *::after {
+  min-width: 0;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

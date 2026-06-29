@@ -16,15 +16,15 @@ export default function Blogs() {
   });
 
   return (
-    <div className="bg-cream-100 min-h-screen py-16 font-sans">
+    <div className="bg-cream-100 min-h-screen py-12 sm:py-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Block */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 animate-fadeInUp">
-          <span className="text-xs font-bold text-sage-500 tracking-widest uppercase bg-sage-100/60 border border-sage-200/50 px-4 py-1.5 rounded-full">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-4 animate-fadeInUp">
+          <span className="inline-block text-xs font-bold text-sage-500 tracking-widest uppercase bg-sage-100/60 border border-sage-200/50 px-4 py-1.5 rounded-full">
             Clinical Wellness Library
           </span>
-          <h1 className="font-display font-bold text-4xl text-sage-900 leading-tight mt-2">
+          <h1 className="font-display font-bold text-3xl sm:text-4xl text-sage-900 leading-tight mt-2">
             Health and Digestion Blogs
           </h1>
           <p className="text-base text-sage-700 leading-relaxed">

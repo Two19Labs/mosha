@@ -166,15 +166,15 @@ export default function ConcernPage({ concernType, onAddToCart }) {
   };
 
   return (
-    <div className="bg-cream-100 min-h-screen py-16 font-sans">
+    <div className="bg-cream-100 min-h-screen py-12 sm:py-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Block */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 animate-fadeInUp">
-          <span className="text-xs font-bold text-sage-500 tracking-widest uppercase bg-sage-100/60 border border-sage-200/50 px-4 py-1.5 rounded-full">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-4 animate-fadeInUp">
+          <span className="inline-block text-xs font-bold text-sage-500 tracking-widest uppercase bg-sage-100/60 border border-sage-200/50 px-4 py-1.5 rounded-full">
             Targeted Clinic Concern
           </span>
-          <h1 className="font-display font-bold text-4xl sm:text-5xl text-sage-900 leading-tight mt-2">
+          <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-sage-900 leading-tight mt-2">
             {info.title}
           </h1>
           <p className="text-base text-sage-700 leading-relaxed">
@@ -183,11 +183,11 @@ export default function ConcernPage({ concernType, onAddToCart }) {
         </div>
 
         {/* Symptoms Relief Grid */}
-        <div className="glass-panel p-8 rounded-3xl border border-sage-200/50 bg-cream-50/70 mb-20 animate-fadeInUp">
+        <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sage-200/50 bg-cream-50/70 mb-12 sm:mb-20 animate-fadeInUp">
           <h2 className="font-display font-bold text-lg text-sage-800 mb-6 text-center">
             Clinically Targeting Relief For
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
             {info.symptoms.map((symptom, idx) => (
               <div 
                 key={idx} 
@@ -201,8 +201,8 @@ export default function ConcernPage({ concernType, onAddToCart }) {
         </div>
 
         {/* Program Tiers */}
-        <div className="mb-24">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className="mb-16 sm:mb-24">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-3">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase">
               Program Selection
             </h2>
@@ -214,7 +214,7 @@ export default function ConcernPage({ concernType, onAddToCart }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
             {plans.map((plan, idx) => (
               <div 
                 key={idx} 
@@ -284,8 +284,8 @@ export default function ConcernPage({ concernType, onAddToCart }) {
 
         {/* Featured Product Section */}
         {info.featuredProduct && (
-          <div className="bg-cream-50/70 rounded-3xl p-8 sm:p-12 border border-sage-100 mb-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="bg-cream-50/70 rounded-3xl p-6 sm:p-12 border border-sage-100 mb-12 sm:mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-7 space-y-6">
                 <span className="text-xs font-bold text-coral-500 uppercase tracking-widest font-sans">
                   Featured Formulation

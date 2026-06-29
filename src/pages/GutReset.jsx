@@ -110,7 +110,7 @@ export default function GutReset({ onAddToCart }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20 animate-fadeInUp">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center mb-14 sm:mb-20 animate-fadeInUp">
           <div className="lg:col-span-7 space-y-6">
             <span className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
               Signature Clinical Program
@@ -150,7 +150,7 @@ export default function GutReset({ onAddToCart }) {
         </div>
 
         {/* Steps/Journey Section */}
-        <div className="mb-24">
+        <div className="mb-16 sm:mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
               Program Steps
@@ -163,9 +163,9 @@ export default function GutReset({ onAddToCart }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {steps.map((step, idx) => (
-              <div key={idx} className="glass-panel p-8 rounded-2xl border border-sage-200/40 bg-cream-50/70 hover:border-sage-400/50 hover:shadow-lg transition-all duration-300">
+              <div key={idx} className="glass-panel p-6 sm:p-8 rounded-2xl border border-sage-200/40 bg-cream-50/70 hover:border-sage-400/50 hover:shadow-lg transition-all duration-300">
                 <span className="text-3xl font-display font-black text-sage-200">{step.num}</span>
                 <h4 className="font-display font-bold text-lg text-sage-800 mt-4 mb-2">
                   {step.title}
@@ -179,7 +179,7 @@ export default function GutReset({ onAddToCart }) {
         </div>
 
         {/* Pillars / Methodology Section */}
-        <div className="mb-24 bg-cream-50/60 rounded-3xl p-8 sm:p-12 border border-sage-100">
+        <div className="mb-16 sm:mb-24 bg-cream-50/60 rounded-3xl p-8 sm:p-12 border border-sage-100">
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
               Methodology
@@ -189,7 +189,7 @@ export default function GutReset({ onAddToCart }) {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {pillars.map((pillar, idx) => (
               <div key={idx} className="space-y-3">
                 <h4 className="font-display font-bold text-base text-sage-800 flex items-center">
@@ -205,7 +205,7 @@ export default function GutReset({ onAddToCart }) {
         </div>
 
         {/* Client Reviews Section */}
-        <div className="mb-24">
+        <div className="mb-16 sm:mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
               Client Reviews
@@ -215,9 +215,9 @@ export default function GutReset({ onAddToCart }) {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {reviews.map((rev, idx) => (
-              <div key={idx} className="glass-panel p-8 rounded-2xl border border-sage-200/50 bg-cream-50 shadow-md hover:scale-[1.01] transition-transform">
+              <div key={idx} className="glass-panel p-6 sm:p-8 rounded-2xl border border-sage-200/50 bg-cream-50 shadow-md hover:scale-[1.01] transition-transform">
                 <div className="flex items-center space-x-1 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-4 w-4 text-coral-500 fill-coral-500" />
@@ -240,7 +240,7 @@ export default function GutReset({ onAddToCart }) {
         </div>
 
         {/* Team Members Section */}
-        <div className="mb-24">
+        <div className="mb-16 sm:mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
               Our Experts
@@ -253,9 +253,9 @@ export default function GutReset({ onAddToCart }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {team.map((member, idx) => (
-              <div key={idx} className="glass-panel p-8 rounded-2xl border border-sage-200/50 bg-cream-50 flex flex-col justify-between hover:border-sage-400/50 transition-colors duration-300">
+              <div key={idx} className="glass-panel p-6 sm:p-8 rounded-2xl border border-sage-200/50 bg-cream-50 flex flex-col justify-between hover:border-sage-400/50 transition-colors duration-300">
                 <div className="space-y-4">
                   <div className="h-10 w-10 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 font-bold">
                     <Heart className="h-5 w-5 fill-sage-600 text-sage-600" />

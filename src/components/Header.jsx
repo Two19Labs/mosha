@@ -23,16 +23,16 @@ export default function Header({ currentTab, setCurrentTab, setConcernType, cart
   return (
     <header className="sticky top-0 z-40 w-full bg-cream-50 border-b border-sage-100 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <div 
-            onClick={() => navigateToTab('home')} 
+          <div
+            onClick={() => navigateToTab('home')}
             className="flex items-center space-x-2 cursor-pointer group"
           >
-            <div className="h-10 w-10 rounded-full bg-sage-500 flex items-center justify-center text-cream-100 group-hover:scale-105 transition-transform duration-300">
-              <Heart className="h-5 w-5 fill-cream-100" />
+            <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-sage-500 flex items-center justify-center text-cream-100 group-hover:scale-105 transition-transform duration-300 shrink-0">
+              <Heart className="h-4 w-4 sm:h-5 sm:w-5 fill-cream-100" />
             </div>
-            <span className="font-display font-bold text-2xl tracking-wide text-sage-800">
+            <span className="font-display font-bold text-xl sm:text-2xl tracking-wide text-sage-800">
               MOSHA<span className="text-sage-500 font-light">HEALTH</span>
             </span>
           </div>
