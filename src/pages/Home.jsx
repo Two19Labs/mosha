@@ -531,7 +531,7 @@ Please connect me with a gut nutrition expert.`;
                 <img 
                   src={founderImage} 
                   alt="Mitali Kalra" 
-                  className="rounded-2xl max-w-xs object-cover grayscale hover:grayscale-0 transition-all duration-500 shadow-lg"
+                  className="rounded-2xl max-w-xs object-cover transition-all duration-500 shadow-lg"
                 />
                 <div className="absolute -bottom-4 -right-4 bg-sage-500 text-cream-100 px-6 py-2 rounded-full text-xs font-bold font-sans shadow-md">
                   Founder
