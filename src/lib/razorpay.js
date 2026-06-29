@@ -24,10 +24,9 @@ export function loadRazorpay() {
 // NOTE: Frontend-only test integration. No order_id / signature verification
 // (those require a backend with the key_secret). Do not use as-is in production.
 export async function openRazorpayCheckout({ amount, customer, notes, onSuccess, onDismiss }) {
-  const keyId = import.meta.env.VITE_RAZORPAY_KEY_ID;
-  if (!keyId) {
-    throw new Error('Missing VITE_RAZORPAY_KEY_ID in environment');
-  }
+  // key_id is a publishable (public) Razorpay credential — safe in frontend.
+  // Env var overrides; fallback keeps online payments working without env config.
+  const keyId = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_SsJbQhMsCgYzaO';
 
   const loaded = await loadRazorpay();
   if (!loaded) {
