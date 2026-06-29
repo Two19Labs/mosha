@@ -78,10 +78,8 @@ html {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Custom glassmorphism card */
+/* Solid card panel */
 .glass-panel {
-  background: rgba(253, 252, 247, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgb(253, 252, 247);
   border: 1px solid rgba(84, 125, 100, 0.1);
 }
