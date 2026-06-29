@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { Heart, Activity, Star, ChevronDown, Check, ArrowRight, ShieldCheck, Award, Zap, HelpCircle } from 'lucide-react';
 import founderImage from '../assets/images/mitali_kalra.png';
 
+// Visual storytelling images — temporary Unsplash placeholders.
+// Swap each URL with your generated brand image (suggested filename in comment).
+const IMG = {
+  pillarWhole:      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80', // pillar_whole_ingredients.jpg
+  pillarWisdom:     'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=80', // pillar_traditional_wisdom.jpg
+  pillarGut:        'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=900&q=80', // pillar_gut_first.jpg
+  journey:          'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=80', // journey_wellness.jpg
+  approachConsult:  'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80', // approach_consultation.jpg
+  approachProduct:  'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=80', // approach_products.jpg
+  approachWellness: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=900&q=80', // approach_wellness.jpg
+};
+
 export default function Home({ setCurrentTab, setConcernType }) {
   const [activeTab, setActiveTab] = useState(0);
   const [faqOpen, setFaqOpen] = useState([false, false, false]);
@@ -61,17 +73,20 @@ Please connect me with a gut nutrition expert.`;
     {
       title: "Whole Ingredients. Nothing Synthetic.",
       subtitle: "Pure, natural nourishment",
-      desc: "We use real foods, herbs, and botanicals, not isolates, artificial additives, or synthetic shortcuts. Every ingredient is selected in its complete, natural form so your body recognizes and absorbs it better."
+      desc: "We use real foods, herbs, and botanicals, not isolates, artificial additives, or synthetic shortcuts. Every ingredient is selected in its complete, natural form so your body recognizes and absorbs it better.",
+      image: IMG.pillarWhole
     },
     {
       title: "Traditional Wisdom. Modern Precision.",
       subtitle: "Time tested, science backed",
-      desc: "Our formulations are inspired by time-tested digestive remedies and refined using contemporary nutritional science. We honor what has worked for generations, while making it practical and effective for modern life."
+      desc: "Our formulations are inspired by time-tested digestive remedies and refined using contemporary nutritional science. We honor what has worked for generations, while making it practical and effective for modern life.",
+      image: IMG.pillarWisdom
     },
     {
       title: "Gut-First, Always.",
       subtitle: "The source of wellness",
-      desc: "Every MOSHA product is designed to support digestive balance, whether it is calming acidity, easing bloating, or nourishing the gut lining. Because when your gut works well, everything else follows."
+      desc: "Every MOSHA product is designed to support digestive balance, whether it is calming acidity, easing bloating, or nourishing the gut lining. Because when your gut works well, everything else follows.",
+      image: IMG.pillarGut
     }
   ];
 
@@ -315,9 +330,14 @@ Please connect me with a gut nutrition expert.`;
             ))}
           </div>
 
-          <div className="glass-panel p-8 rounded-3xl border border-sage-200/60 max-w-4xl mx-auto flex flex-col md:flex-row gap-10 items-center bg-cream-50">
-            <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 shrink-0">
-              <Zap className="h-8 w-8 text-sage-600" />
+          <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sage-200/60 max-w-4xl mx-auto flex flex-col md:flex-row gap-8 md:gap-10 items-center bg-cream-50">
+            <div className="w-full md:w-72 shrink-0">
+              <img
+                src={pillars[activeTab].image}
+                alt={pillars[activeTab].title}
+                className="w-full h-56 md:h-64 object-cover rounded-2xl shadow-md bg-sage-100"
+                loading="lazy"
+              />
             </div>
             <div className="space-y-4">
               <span className="text-xs font-bold text-coral-500 uppercase tracking-widest font-sans">
@@ -344,6 +364,27 @@ Please connect me with a gut nutrition expert.`;
             <h3 className="font-display font-bold text-3xl sm:text-4xl text-sage-900">
               Your Journey to a Healthier Self
             </h3>
+          </div>
+
+          {/* Wide lifestyle banner */}
+          <div className="relative rounded-3xl overflow-hidden mb-16 shadow-xl border border-sage-200/50">
+            <img
+              src={IMG.journey}
+              alt="A calmer, lighter, more energetic life"
+              className="w-full h-56 sm:h-72 lg:h-80 object-cover bg-sage-100"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-sage-900/70 via-sage-900/30 to-transparent" />
+            <div className="absolute inset-0 flex items-center">
+              <div className="px-8 sm:px-12 max-w-lg space-y-3">
+                <p className="text-cream-100/80 text-xs font-bold uppercase tracking-widest font-sans">
+                  From the first consult to a full reset
+                </p>
+                <h4 className="font-display font-bold text-2xl sm:text-3xl text-cream-50 leading-snug">
+                  A guided path to a calmer, lighter gut.
+                </h4>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 relative">
@@ -374,8 +415,60 @@ Please connect me with a gut nutrition expert.`;
         </div>
       </section>
 
-      {/* Founder Section */}
+      {/* Gut Healing Approaches Section */}
       <section className="py-20 bg-cream-50 border-t border-b border-sage-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
+              How We Help You Heal
+            </h2>
+            <h3 className="font-display font-bold text-3xl sm:text-4xl text-sage-900">
+              A Complete Gut Healing Approach
+            </h3>
+            <p className="font-sans text-sm text-sage-500 leading-relaxed">
+              From expert consultation to functional formulations and daily lifestyle support, every part of MOSHA works together to restore your gut.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                image: IMG.approachConsult,
+                title: "Expert Consultation",
+                desc: "One-on-one guidance from certified clinical nutritionists who trace the root cause of your symptoms and build a plan around you."
+              },
+              {
+                image: IMG.approachProduct,
+                title: "Functional Formulations",
+                desc: "Whole-food blends, shots, and drinks crafted with herbs and adaptogens to calm, repair, and strengthen your digestive system."
+              },
+              {
+                image: IMG.approachWellness,
+                title: "Lifestyle and Wellness",
+                desc: "Daily habits, movement, and gut-brain practices that keep your microbiome balanced long after the reset ends."
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="group rounded-3xl overflow-hidden border border-sage-200/50 bg-cream-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                <div className="overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-56 object-cover bg-sage-100 group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6 space-y-2">
+                  <h4 className="font-display font-bold text-lg text-sage-800">{item.title}</h4>
+                  <p className="font-sans text-xs text-sage-500 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Section */}
+      <section className="py-20 border-t border-b border-sage-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-4 flex justify-center">
