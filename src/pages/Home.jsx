@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, Activity, Star, ChevronDown, Check, ArrowRight, ShieldCheck, Award, Zap, HelpCircle } from 'lucide-react';
 import founderImage from '../assets/images/mitali_kalra.png';
-import gutCalmImage from '../assets/images/gut_calm_blend.png';
-import basilStrawberryImage from '../assets/images/basil_strawberry_drink.png';
+import heroGutVisual from '../assets/images/hero_gut_visual.png';
 
 // Visual storytelling images — temporary Unsplash placeholders.
 // Swap each URL with your generated brand image (suggested filename in comment).
@@ -154,36 +153,24 @@ Please connect me with a gut nutrition expert.`;
             </div>
 
             {/* Right Graphic/Mockup */}
-            <div className="lg:col-span-6 relative min-h-[460px] animate-fadeInUp min-w-0">
-              <div className="absolute left-4 top-12 hidden h-80 w-80 rounded-full bg-sage-100/70 lg:block" />
-              <div className="absolute left-0 bottom-4 hidden h-28 w-44 -rotate-12 rounded-[50%] bg-sage-300/30 blur-2xl lg:block" />
-              
-              <div className="relative mx-auto w-full max-w-3xl">
-                <div className="absolute left-0 top-20 hidden sm:block">
-                  <div className="relative h-72 w-72 overflow-hidden rounded-full border border-sage-100 bg-white/70 shadow-sm">
-                    <img
-                      src={basilStrawberryImage}
-                      alt="MOSHA gut health drink"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                </div>
+            <div className="lg:col-span-6 relative min-h-[500px] animate-fadeInUp min-w-0">
+              <div className="absolute -left-4 top-3 hidden h-[430px] w-[430px] rounded-full border-[70px] border-sage-100/70 lg:block" />
+              <div className="absolute left-20 top-16 hidden h-64 w-[360px] -rotate-12 rounded-[55%_45%_60%_40%] bg-sage-100/80 lg:block" />
+              <div className="absolute -right-20 bottom-0 hidden h-80 w-80 rounded-full bg-sage-200/40 blur-3xl lg:block" />
 
-                <div className="absolute left-24 top-40 hidden sm:block">
-                  <img
-                    src={gutCalmImage}
-                    alt="MOSHA Gut Calm herbal wellness blend"
-                    className="h-72 w-72 rounded-[2rem] object-cover shadow-2xl shadow-sage-900/10"
-                  />
-                </div>
+              <div className="relative mx-auto h-full min-h-[500px] w-full max-w-[680px]">
+                <img
+                  src={heroGutVisual}
+                  alt="Green digestive drink and amber gut health supplement bottle with botanical leaves"
+                  className="absolute left-[-78px] top-6 hidden w-[520px] max-w-none object-contain drop-shadow-2xl lg:block"
+                />
+                <img
+                  src={heroGutVisual}
+                  alt="Green digestive drink and amber gut health supplement bottle with botanical leaves"
+                  className="mx-auto mb-6 w-full max-w-md rounded-[2rem] object-contain shadow-2xl shadow-sage-900/10 lg:hidden"
+                />
 
-                <div className="absolute left-6 top-4 hidden text-sage-500 lg:block">
-                  <div className="h-24 w-3 rounded-full bg-sage-400/40 rotate-[-22deg]" />
-                  <div className="absolute left-4 top-8 h-14 w-8 rounded-[100%_0] bg-sage-300/70 rotate-[28deg]" />
-                  <div className="absolute -left-8 top-20 h-16 w-9 rounded-[100%_0] bg-sage-500/70 rotate-[-48deg]" />
-                </div>
-
-                <div className="relative mx-auto w-full max-w-sm rounded-3xl border border-sage-100 bg-white p-6 shadow-2xl shadow-sage-900/10 sm:ml-auto sm:mr-0 sm:mt-8">
+                <div className="relative z-10 mx-auto w-full max-w-sm rounded-3xl border border-sage-100 bg-white p-6 shadow-2xl shadow-sage-900/10 lg:absolute lg:right-0 lg:top-12">
                   <h3 className="font-display font-bold text-lg text-sage-900 mb-6 flex items-start">
                     <span className="mr-3 flex h-9 w-9 items-center justify-center rounded-full bg-sage-50 text-sage-500">
                       <ShieldCheck className="h-5 w-5" />
