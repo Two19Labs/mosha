@@ -158,7 +158,7 @@ Please connect me with a gut nutrition expert.`;
               <div className="absolute left-4 top-12 hidden h-80 w-80 rounded-full bg-sage-100/70 lg:block" />
               <div className="absolute left-0 bottom-4 hidden h-28 w-44 -rotate-12 rounded-[50%] bg-sage-300/30 blur-2xl lg:block" />
               
-              <div className="relative mx-auto w-full max-w-3xl">
+              <div className="relative w-full max-w-3xl mx-auto lg:max-w-none lg:mx-0">
                 <div className="absolute left-0 top-20 hidden sm:block">
                   <div className="relative h-72 w-72 overflow-hidden rounded-full border border-sage-100 bg-white/70 shadow-sm">
                     <img
