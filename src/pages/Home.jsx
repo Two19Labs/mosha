@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Heart, Activity, Star, ChevronDown, Check, ArrowRight, ShieldCheck, Award, Zap, HelpCircle } from 'lucide-react';
 import founderImage from '../assets/images/mitali_kalra.png';
+import gutCalmImage from '../assets/images/gut_calm_blend.png';
+import basilStrawberryImage from '../assets/images/basil_strawberry_drink.png';
 
 // Visual storytelling images — temporary Unsplash placeholders.
 // Swap each URL with your generated brand image (suggested filename in comment).
@@ -102,31 +104,39 @@ Please connect me with a gut nutrition expert.`;
     <div className="bg-cream-100 min-h-screen">
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-20 sm:pb-28">
+      <section className="relative overflow-hidden bg-cream-50 pt-10 pb-12 sm:pt-12 sm:pb-16">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(84,125,100,0.14),transparent_27%),radial-gradient(circle_at_92%_78%,rgba(161,190,172,0.26),transparent_24%)]" />
+        <div className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-sage-200/40 blur-3xl" />
+        <div className="pointer-events-none absolute left-[46%] top-8 hidden h-72 w-72 rounded-full border-[44px] border-sage-100/60 lg:block" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center min-w-0">
             
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-8 animate-fadeInUp">
+            <div className="lg:col-span-6 space-y-6 animate-fadeInUp min-w-0">
               <div className="inline-flex items-center space-x-2 bg-sage-100/60 border border-sage-200/50 px-4 py-1.5 rounded-full">
-                <Activity className="h-4 w-4 text-sage-600 animate-pulse" />
-                <span className="text-xs font-semibold text-sage-700 tracking-wider uppercase font-sans">
+                <Activity className="h-4 w-4 text-sage-600" />
+                <span className="text-[11px] font-bold text-sage-700 tracking-wider uppercase font-sans">
                   India's First Holistic Gut Clinic
                 </span>
               </div>
               
-              <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-sage-900 leading-tight">
-                Healing Your Gut to <span className="text-sage-500 underline decoration-sage-300 decoration-wavy">Help You Thrive</span>
+              <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-[50px] xl:text-[54px] text-sage-900 leading-[1.08]">
+                Healing Your Gut to <span className="block text-sage-500 underline decoration-sage-300 decoration-wavy underline-offset-8">Help You Thrive</span>
               </h1>
               
-              <p className="font-sans text-sage-800 text-base sm:text-lg leading-relaxed max-w-2xl">
-                MOSHA's gut-first products are crafted to calm, support, and strengthen your digestive system using whole ingredients as nature intended. Rooted in traditional wisdom, refined for modern life. From acidity and bloating to gastritis and sensitive digestion, our formulations support real gut concerns with carefully selected, minimally processed ingredients.
-              </p>
+              <div className="space-y-4 font-sans text-sage-800 text-sm sm:text-base leading-relaxed max-w-xl">
+                <p>
+                  MOSHA's gut-first products are crafted to calm, support, and strengthen your digestive system using whole ingredients as nature intended. Rooted in traditional wisdom, refined for modern life.
+                </p>
+                <p>
+                  From acidity and bloating to gastritis and sensitive digestion, our formulations support real gut concerns with carefully selected, minimally processed ingredients.
+                </p>
+              </div>
               
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 <button 
                   onClick={() => setCurrentTab('reset')}
-                  className="px-8 py-4 rounded-full bg-sage-500 text-cream-100 text-sm font-bold shadow-md hover:bg-sage-600 hover:scale-[1.02] hover:shadow-lg transition-all duration-300 flex items-center justify-center"
+                  className="w-full sm:w-auto px-8 py-4 rounded-full bg-sage-500 text-cream-100 text-sm font-bold shadow-lg shadow-sage-900/10 hover:bg-sage-600 hover:scale-[1.02] hover:shadow-xl transition-all duration-300 flex items-center justify-center"
                 >
                   Start 14-Day Reset
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -135,92 +145,137 @@ Please connect me with a gut nutrition expert.`;
                   href="https://aika-health.involve.me/whealthquiz"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-full bg-cream-50 text-sage-800 text-sm font-bold border border-sage-200 shadow-sm hover:bg-sage-50 hover:scale-[1.02] transition-all duration-300 text-center"
+                  className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-sage-800 text-sm font-bold border border-sage-200 shadow-sm hover:bg-sage-50 hover:scale-[1.02] transition-all duration-300 text-center"
                 >
                   Take Free Gut Quiz
                 </a>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-sage-200/60 max-w-xl">
-                <div>
-                  <h3 className="font-display font-bold text-2xl sm:text-3xl text-sage-800">2000+</h3>
-                  <p className="text-xs font-semibold text-sage-500 font-sans mt-1 uppercase tracking-wide">
-                    Happy Customers
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-2xl sm:text-3xl text-sage-800">90%</h3>
-                  <p className="text-xs font-semibold text-sage-500 font-sans mt-1 uppercase tracking-wide">
-                    Success Rate
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-2xl sm:text-3xl text-sage-800 flex items-center">
-                    4.7 <Star className="h-4 w-4 text-coral-500 fill-coral-500 ml-1" />
-                  </h3>
-                  <p className="text-xs font-semibold text-sage-500 font-sans mt-1 uppercase tracking-wide">
-                    Client Rating
-                  </p>
-                </div>
-              </div>
-
             </div>
 
             {/* Right Graphic/Mockup */}
-            <div className="lg:col-span-5 relative flex justify-center">
-              <div className="absolute inset-0 bg-sage-200 rounded-full blur-3xl opacity-20 transform -translate-y-10" />
-              <div className="relative glass-panel rounded-3xl p-8 max-w-md w-full border border-sage-200/50 shadow-2xl animate-fadeInUp">
-                <h3 className="font-display font-bold text-lg text-sage-800 mb-6 flex items-center">
-                  <ShieldCheck className="h-5 w-5 text-sage-500 mr-2" />
-                  Select Your Digestive Concern
-                </h3>
-                <div className="space-y-4">
-                  <button 
-                    onClick={() => navigateToConcern('acidity')}
-                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-cream-50 hover:bg-sage-50 hover:border-sage-300 border border-sage-100 transition-all duration-300 group"
-                  >
-                    <span className="font-sans font-semibold text-sm text-sage-800">Acidity and GERD</span>
-                    <ChevronDown className="h-4 w-4 text-sage-400 group-hover:text-sage-600 -rotate-90 transition-transform" />
-                  </button>
-                  <button 
-                    onClick={() => navigateToConcern('gastritis')}
-                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-cream-50 hover:bg-sage-50 hover:border-sage-300 border border-sage-100 transition-all duration-300 group"
-                  >
-                    <span className="font-sans font-semibold text-sm text-sage-800">H. Pylori and Gastritis</span>
-                    <ChevronDown className="h-4 w-4 text-sage-400 group-hover:text-sage-600 -rotate-90 transition-transform" />
-                  </button>
-                  <button 
-                    onClick={() => navigateToConcern('bloating')}
-                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-cream-50 hover:bg-sage-50 hover:border-sage-300 border border-sage-100 transition-all duration-300 group"
-                  >
-                    <span className="font-sans font-semibold text-sm text-sage-800">Bloating and Gas</span>
-                    <ChevronDown className="h-4 w-4 text-sage-400 group-hover:text-sage-600 -rotate-90 transition-transform" />
-                  </button>
-                  <button 
-                    onClick={() => navigateToConcern('constipation')}
-                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-cream-50 hover:bg-sage-50 hover:border-sage-300 border border-sage-100 transition-all duration-300 group"
-                  >
-                    <span className="font-sans font-semibold text-sm text-sage-800">Constipation and Gut Health</span>
-                    <ChevronDown className="h-4 w-4 text-sage-400 group-hover:text-sage-600 -rotate-90 transition-transform" />
-                  </button>
+            <div className="lg:col-span-6 relative min-h-[460px] animate-fadeInUp min-w-0">
+              <div className="absolute left-4 top-12 hidden h-80 w-80 rounded-full bg-sage-100/70 lg:block" />
+              <div className="absolute left-0 bottom-4 hidden h-28 w-44 -rotate-12 rounded-[50%] bg-sage-300/30 blur-2xl lg:block" />
+              
+              <div className="relative mx-auto w-full max-w-3xl">
+                <div className="absolute left-0 top-20 hidden sm:block">
+                  <div className="relative h-72 w-72 overflow-hidden rounded-full border border-sage-100 bg-white/70 shadow-sm">
+                    <img
+                      src={basilStrawberryImage}
+                      alt="MOSHA gut health drink"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
-                <div className="mt-6 text-center">
-                  <p className="text-xs text-sage-500 font-sans leading-relaxed">
-                    Not sure? Take our quiz or consult an expert for free.
-                  </p>
+
+                <div className="absolute left-24 top-40 hidden sm:block">
+                  <img
+                    src={gutCalmImage}
+                    alt="MOSHA Gut Calm herbal wellness blend"
+                    className="h-72 w-72 rounded-[2rem] object-cover shadow-2xl shadow-sage-900/10"
+                  />
+                </div>
+
+                <div className="absolute left-6 top-4 hidden text-sage-500 lg:block">
+                  <div className="h-24 w-3 rounded-full bg-sage-400/40 rotate-[-22deg]" />
+                  <div className="absolute left-4 top-8 h-14 w-8 rounded-[100%_0] bg-sage-300/70 rotate-[28deg]" />
+                  <div className="absolute -left-8 top-20 h-16 w-9 rounded-[100%_0] bg-sage-500/70 rotate-[-48deg]" />
+                </div>
+
+                <div className="relative mx-auto w-full max-w-sm rounded-3xl border border-sage-100 bg-white p-6 shadow-2xl shadow-sage-900/10 sm:ml-auto sm:mr-0 sm:mt-8">
+                  <h3 className="font-display font-bold text-lg text-sage-900 mb-6 flex items-start">
+                    <span className="mr-3 flex h-9 w-9 items-center justify-center rounded-full bg-sage-50 text-sage-500">
+                      <ShieldCheck className="h-5 w-5" />
+                    </span>
+                    <span className="leading-tight">Select Your<br />Digestive Concern</span>
+                  </h3>
+                  <div className="space-y-4">
+                    <button 
+                      onClick={() => navigateToConcern('acidity')}
+                      className="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-cream-50 hover:bg-sage-50 hover:border-sage-300 border border-sage-100 transition-all duration-300 group"
+                    >
+                      <span className="font-sans font-semibold text-sm text-sage-800">Acidity and GERD</span>
+                      <ChevronDown className="h-4 w-4 text-sage-500 group-hover:text-sage-700 -rotate-90 transition-transform" />
+                    </button>
+                    <button 
+                      onClick={() => navigateToConcern('gastritis')}
+                      className="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-cream-50 hover:bg-sage-50 hover:border-sage-300 border border-sage-100 transition-all duration-300 group"
+                    >
+                      <span className="font-sans font-semibold text-sm text-sage-800">H. Pylori and Gastritis</span>
+                      <ChevronDown className="h-4 w-4 text-sage-500 group-hover:text-sage-700 -rotate-90 transition-transform" />
+                    </button>
+                    <button 
+                      onClick={() => navigateToConcern('bloating')}
+                      className="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-cream-50 hover:bg-sage-50 hover:border-sage-300 border border-sage-100 transition-all duration-300 group"
+                    >
+                      <span className="font-sans font-semibold text-sm text-sage-800">Bloating and Gas</span>
+                      <ChevronDown className="h-4 w-4 text-sage-500 group-hover:text-sage-700 -rotate-90 transition-transform" />
+                    </button>
+                    <button 
+                      onClick={() => navigateToConcern('constipation')}
+                      className="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-cream-50 hover:bg-sage-50 hover:border-sage-300 border border-sage-100 transition-all duration-300 group"
+                    >
+                      <span className="font-sans font-semibold text-sm text-sage-800">Constipation and Gut Health</span>
+                      <ChevronDown className="h-4 w-4 text-sage-500 group-hover:text-sage-700 -rotate-90 transition-transform" />
+                    </button>
+                  </div>
+                  <div className="mt-6 text-center">
+                    <p className="text-xs text-sage-500 font-sans leading-relaxed">
+                      Not sure? Take our quiz or consult an expert for free.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
           </div>
+
+          {/* Trust Indicators */}
+          <div className="mt-10 grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-sage-100 bg-white/80 shadow-sm sm:grid-cols-3 lg:max-w-3xl">
+            <div className="flex items-center gap-5 px-8 py-5">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sage-100 text-sage-600">
+                <Heart className="h-7 w-7" />
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-sage-800">2000+</h3>
+                <p className="text-[10px] font-bold text-sage-500 font-sans mt-1 uppercase tracking-wide">
+                  Happy Customers
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-5 border-t border-sage-100 px-8 py-5 sm:border-l sm:border-t-0">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sage-100 text-sage-600">
+                <ShieldCheck className="h-7 w-7" />
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-sage-800">90%</h3>
+                <p className="text-[10px] font-bold text-sage-500 font-sans mt-1 uppercase tracking-wide">
+                  Success Rate
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-5 border-t border-sage-100 px-8 py-5 sm:border-l sm:border-t-0">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sage-100 text-sage-600">
+                <Star className="h-7 w-7" />
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-sage-800 flex items-center">
+                  4.7 <Star className="h-4 w-4 text-coral-500 fill-coral-500 ml-1" />
+                </h3>
+                <p className="text-[10px] font-bold text-sage-500 font-sans mt-1 uppercase tracking-wide">
+                  Client Rating
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Hidden Triggers Section */}
-      <section className="py-20 bg-cream-50 border-t border-b border-sage-100">
+      <section className="py-14 sm:py-20 bg-cream-50 border-t border-b border-sage-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-4">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
               Root Causes of Illness
             </h2>
@@ -232,7 +287,7 @@ Please connect me with a gut nutrition expert.`;
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">
             {triggers.map((trigger, idx) => (
               <div key={idx} className="glass-panel p-6 rounded-2xl border border-sage-200/40 hover:border-sage-400/50 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
                 <div className="space-y-4">
@@ -253,9 +308,9 @@ Please connect me with a gut nutrition expert.`;
       </section>
 
       {/* Why Gut Health is Important Section */}
-      <section className="py-20 sm:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="space-y-6">
               <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
                 The Control Center
@@ -303,7 +358,7 @@ Please connect me with a gut nutrition expert.`;
       </section>
 
       {/* Root Cause Healing Tabbed Section */}
-      <section className="py-20 bg-cream-200/30 border-t border-b border-sage-100">
+      <section className="py-14 sm:py-20 bg-cream-200/30 border-t border-b border-sage-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans mb-3">
@@ -355,9 +410,9 @@ Please connect me with a gut nutrition expert.`;
       </section>
 
       {/* The Journey Section */}
-      <section className="py-20">
+      <section className="py-14 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-20">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans mb-3">
               The Path Forward
             </h2>
@@ -416,9 +471,9 @@ Please connect me with a gut nutrition expert.`;
       </section>
 
       {/* Gut Healing Approaches Section */}
-      <section className="py-20 bg-cream-50 border-t border-b border-sage-100">
+      <section className="py-14 sm:py-20 bg-cream-50 border-t border-b border-sage-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-3">
             <h2 className="text-xs font-bold text-sage-500 tracking-widest uppercase font-sans">
               How We Help You Heal
             </h2>
@@ -468,9 +523,9 @@ Please connect me with a gut nutrition expert.`;
       </section>
 
       {/* Founder Section */}
-      <section className="py-20 border-t border-b border-sage-100">
+      <section className="py-14 sm:py-20 border-t border-b border-sage-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-4 flex justify-center">
               <div className="relative p-2 border border-sage-200 rounded-3xl bg-cream-100">
                 <img 
@@ -510,9 +565,9 @@ Please connect me with a gut nutrition expert.`;
       </section>
 
       {/* Consultation Contact Form Section */}
-      <section className="py-20">
+      <section className="py-14 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
             
             {/* Left side details */}
             <div className="flex flex-col justify-start space-y-10">
@@ -667,9 +722,9 @@ Please connect me with a gut nutrition expert.`;
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-cream-50 border-t border-sage-100">
+      <section className="py-14 sm:py-20 bg-cream-50 border-t border-sage-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-3">
+          <div className="text-center mb-10 sm:mb-16 space-y-3">
             <HelpCircle className="h-8 w-8 text-sage-500 mx-auto" />
             <h2 className="font-display font-bold text-3xl text-sage-900">
               Gut Health FAQs
