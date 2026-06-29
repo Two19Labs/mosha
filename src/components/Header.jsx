@@ -21,7 +21,7 @@ export default function Header({ currentTab, setCurrentTab, setConcernType, cart
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full glass-panel border-b border-sage-100 shadow-sm transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full bg-cream-50 border-b border-sage-100 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
